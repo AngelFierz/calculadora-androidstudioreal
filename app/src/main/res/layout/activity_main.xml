@@ -84,10 +84,20 @@
             android:layout_height="130dip"
             android:layout_weight="1"/>
 
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"/>
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REINCIAR">
+
+    </Button>
 
 
     </LinearLayout>
-
-
-
-</LinearLayout>
