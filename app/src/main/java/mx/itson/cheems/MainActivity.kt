@@ -1,6 +1,12 @@
 package mx.itson.cheems
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationAttributes
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -47,6 +53,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun flip(card: Int) {
         if (card == gameOverCard) {
+
+            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.S) {
+                // si la version del telefono es igual o mayor a Android 12 (API 31)
+                val vibratorAdmin =
+                    applicationContext.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                val vibrator = vibratorAdmin.defaultVibrator
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        1500,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            }else {
+                val vibrator = applicationContext.getSystemService(VIBRATOR_SERVICE) as Vibrator
+                vibrator.vibrate(1500)
+            }
+
             Toast.makeText(this, "Perdiste jajajajajaj menso", Toast.LENGTH_LONG).show()
 
             for (i in 1..9) {
